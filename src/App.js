@@ -1,25 +1,28 @@
-import logo from './logo.svg';
 import './App.css';
+import logo from './assets/images/logo.png'
+import vector from './assets/images/Vector.png'
+
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <div className="App">
+            <header>
+                <div className="header_all">
+                    <img src={logo} alt="Logo"/>
+                    <div className="header_nav">
+                        <div className="header_nav_action">
+                            <img src={vector} alt="vector"/>
+                            <span>Sign up / Sign in</span>
+                        </div>
+                        <div className="header_nav_action">
+                            <img src={vector} alt="vector"/>
+                            <span>Cart</span>
+                        </div>
+                    </div>
+                </div>
+            </header>
+        </div>
+    );
 }
 
 export default App;
