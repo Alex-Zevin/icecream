@@ -31,6 +31,7 @@ header {
     display: flex;
     gap: 10px;
 }
+
 /** Footer */
 
 footer {
@@ -74,4 +75,76 @@ a:hover, a:focus, a:active {
 .copyright span {
     line-height: 45px;
 }
+
+/** main */
+.block {
+    display: flex;
+    flex-direction: column;
+}
+
+.top img {
+    display: block;
+    margin: 0 auto;
+    padding-top: 65px;
+}
+
+.top {
+    width: 380px;
+    height: 305px;
+    background-color: #F4F5FF;
+    border-radius: 30px 30px 0 0;
+}
+
+.bottom {
+    width: 380px;
+    height: 98px;
+    background-color: white;
+    border-radius: 0 0 30px 30px;
+    border: 1px solid #F4F5FF;
+}
+
+.bottom_list {
+    padding: 24px;
+}
+
+.li1 {
+    color: #212542;
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 22px;
+}
+
+.li2 {
+    color: rgba(33, 37, 66, 0.7);
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 16px;
+}
+
+.main_img {
+    /*padding-bottom: 120px;*/
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    row-gap: 30px;
+}
+
+.ice_cream {
+    padding: 63px 0 48px 0;
+    text-align: center;
+    font-weight: 400;
+    font-size: 64px;
+    line-height: 77px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+main {
+    padding-bottom: 120px;
+}
+
 
