@@ -1,0 +1,9 @@
+.copyright {
+    background-color: #F4F4F5;
+    color: rgba(33, 37, 66, 0.5);
+    height: 45px;
+}
+
+.copyright span {
+    line-height: 45px;
+}

@@ -1,0 +1,17 @@
+.footer {
+    border-top: 1px solid #F8F8F8;
+}
+
+.footer_all {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+    height: 110px;
+}
+
+a:hover, a:focus, a:active {
+    text-decoration: none;
+    color: inherit;
+}
+

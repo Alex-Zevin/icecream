@@ -1,0 +1,19 @@
+.footer_nav_list {
+    gap: 64px;
+    display: flex;
+    align-items: center;
+}
+
+.footer_nav_list_item {
+    display: inline-block;
+}
+
+.footer_nav_list_item a {
+    text-decoration: none;
+    color: rgba(33, 37, 66, 0.7);
+}
+
+a:hover, a:focus, a:active {
+    text-decoration: none;
+    color: inherit;
+}

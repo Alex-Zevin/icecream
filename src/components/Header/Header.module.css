@@ -1,0 +1,12 @@
+.header {
+    border-bottom: 1px solid #F8F8F8;
+}
+
+.header_all {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 86px;
+}
+
+
