@@ -49,8 +49,6 @@
     line-height: 22px;
 }
 
-
-
 .promo_3 {
     padding-bottom: 40px;
     font-family: Inter, sans-serif;
@@ -65,7 +63,8 @@
 .promoKod {
     background: #F2F2FA;
     border-radius: 26px;
-    width: 132px;
+    width: 150px;
+    text-align: center;
     height: 28px;
     line-height: 28px;
 }
@@ -122,4 +121,12 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+.ss{
+    text-decoration: none;
+    color: #212542;
+    width: 82px;
+    height: 14px;
+    opacity: 0.5;
 }
