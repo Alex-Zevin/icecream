@@ -1,0 +1,10 @@
+.header_nav {
+    display: flex;
+    gap: 50px;
+}
+
+.header_nav_action {
+    align-items: center;
+    display: flex;
+    gap: 10px;
+}
