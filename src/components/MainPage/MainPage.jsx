@@ -1,12 +1,10 @@
-
 import styles from './MainPage.module.css'
-import cream1 from '../../assets/images/cream1.png'
-import cream2 from '../../assets/images/cream2.png'
-import cream3 from '../../assets/images/cream3.png'
-import cream4 from '../../assets/images/cream4.png'
 import heart from '../../assets/images/heart.png'
+import {Link} from "react-router-dom";
+import {products} from "../../mock";
 
 export const MainPage = () => {
+
     return <>
         <div className={styles.ice_cream}>
             <span>i</span>
@@ -14,138 +12,23 @@ export const MainPage = () => {
             <span>ice cream</span>
         </div>
         <div className={`${styles.main_img} container`}>
-            <div className={styles.block}>
-                <div className={styles.top}>
-                    <img src={cream1} alt="cream1"/>
-                </div>
-                <div className={styles.bottom}>
-                    <div className={styles.bottom_list}>
-                        <div className={styles.li1}>Snow Tender Ice Cream</div>
-                        <div className={styles.li2}>$243.00</div>
+            {products.map((prod) => {
+                return  <Link key={prod.id} to={`detail/${prod.id}`}>
+                    <div className={styles.block}>
+                        <div className={styles.top}>
+                            <img src={prod.image} alt="cream1" />
+                        </div>
+                        <div className={styles.bottom}>
+                            <div className={styles.bottom_list}>
+                                <div className={styles.li1}>{prod.name}</div>
+                                <div className={styles.li2}>{prod.price}</div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-            <div className={styles.block}>
-                <div className={styles.top}>
-                    <img src={cream2} alt={styles.cream2}/>
-                </div>
-                <div className={styles.bottom}>
-                    <div className={styles.bottom_list}>
-                        <div className={styles.li1}>Snow Tender Ice Cream</div>
-                        <div className={styles.li2}>$243.00</div>
-                    </div>
-                </div>
-            </div>
-            <div className={styles.block}>
-                <div className={styles.top}>
-                    <img src={cream3} alt={styles.cream3}/>
-                </div>
-                <div className={styles.bottom}>
-                    <div className={styles.bottom_list}>
-                        <div className={styles.li1}>Snow Tender Ice Cream</div>
-                        <div className={styles.li2}>$243.00</div>
-                    </div>
-                </div>
-            </div>
-            <div className={styles.block}>
-                <div className={styles.top}>
-                    <img src={cream4} alt={styles.cream4}/>
-                </div>
-                <div className={styles.bottom}>
-                    <div className={styles.bottom_list}>
-                        <div className={styles.li1}>Snow Tender Ice Cream</div>
-                        <div className={styles.li2}>$243.00</div>
-                    </div>
-                </div>
-            </div>
-            <div className={styles.block}>
-                <div className={styles.top}>
-                    <img src={cream4} alt="cream4"/>
-                </div>
-                <div className={styles.bottom}>
-                    <div className={styles.bottom_list}>
-                        <div className={styles.li1}>Snow Tender Ice Cream</div>
-                        <div className={styles.li2}>$243.00</div>
-                    </div>
-                </div>
-            </div>
-            <div className={styles.block}>
-                <div className={styles.top}>
-                    <img src={cream4} alt="cream4"/>
-                </div>
-                <div className={styles.bottom}>
-                    <div className={styles.bottom_list}>
-                        <div className={styles.li1}>Snow Tender Ice Cream</div>
-                        <div className={styles.li2}>$243.00</div>
-                    </div>
-                </div>
-            </div>
-            <div className={styles.block}>
-                <div className="top">
-                    <img src={cream4} alt="cream4"/>
-                </div>
-                <div className={styles.bottom}>
-                    <div className={styles.bottom_list}>
-                        <div className={styles.li1}>Snow Tender Ice Cream</div>
-                        <div className={styles.li2}>$243.00</div>
-                    </div>
-                </div>
-            </div>
-            <div className={styles.block}>
-                <div className={styles.top}>
-                    <img src={cream4} alt="cream4"/>
-                </div>
-                <div className={styles.bottom}>
-                    <div className={styles.bottom_list}>
-                        <div className={styles.li1}>Snow Tender Ice Cream</div>
-                        <div className={styles.li2}>$243.00</div>
-                    </div>
-                </div>
-            </div>
-            <div className={styles.block}>
-                <div className={styles.top}>
-                    <img src={cream4} alt="cream4"/>
-                </div>
-                <div className={styles.bottom}>
-                    <div className={styles.bottom_list}>
-                        <div className={styles.li1}>Snow Tender Ice Cream</div>
-                        <div className={styles.li2}>$243.00</div>
-                    </div>
-                </div>
-            </div>
-            <div className={styles.block}>
-                <div className={styles.top}>
-                    <img src={cream4} alt="cream4"/>
-                </div>
-                <div className={styles.bottom}>
-                    <div className={styles.bottom_list}>
-                        <div className={styles.li1}>Snow Tender Ice Cream</div>
-                        <div className={styles.li2}>$243.00</div>
-                    </div>
-                </div>
-            </div>
-            <div className={styles.block}>
-                <div className={styles.top}>
-                    <img src={cream4} alt="cream4"/>
-                </div>
-                <div className={styles.bottom}>
-                    <div className={styles.bottom_list}>
-                        <div className={styles.li1}>Snow Tender Ice Cream</div>
-                        <div className={styles.li2}>$243.00</div>
-                    </div>
-                </div>
-            </div>
-            <div className={styles.block}>
-                <div className={styles.top}>
-                    <img src={cream4} alt={styles.cream4}/>
-                </div>
-                <div className={styles.bottom}>
-                    <div className={styles.bottom_list}>
-                        <div className={styles.li1}>Snow Tender Ice Cream</div>
-                        <div className={styles.li2}>$243.00</div>
-                    </div>
-                </div>
-            </div>
+                </Link>
+            })}
+
+
         </div>
     </>
 }

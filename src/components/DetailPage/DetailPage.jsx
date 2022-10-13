@@ -1,39 +1,48 @@
-import cream4 from "../../assets/images/cream4.png";
 import styles from './DetailPage.module.css'
+import {Link, useParams} from "react-router-dom";
+import {products} from "../../mock";
+import {useState} from "react";
 
 export const DetailPage = () => {
+    const {prodId} = useParams();
+
+    const [count, setCount] = useState(0)
+
+    const decrement = () => {
+        if(count > 0) {
+            setCount(count - 1)
+        }
+    }
+    const increment = () => {
+        if(count < 3) {
+            setCount(count + 1)
+        }
+    }
+
+    const product = products.find(item => item.id === prodId)
+
     return <>
         <div className={styles.top_botm}>
-            <a href="#" className={styles.ss}>Main page </a>
+            <Link to='/' className={styles.ss}>Main page </Link>
             <span>/Product card</span>
         </div>
         <div className={styles.mid}>
-            <div className={styles.left }>
-                <img className={styles.imagines} src={cream4} alt="cream4"/>
+            <div className={styles.left}>
+                <img className={styles.imagines} src={product.image} alt="cream4"/>
             </div>
             <div className='right'>
-                <div className={styles.promoKod}>SKU: BXD100BLK</div>
-                <div className={styles.promo_1}>Snow Tender Ice Cream</div>
-                <div className={styles.promo_2}>Description:</div>
-                <div className={styles.promo_3}>Chocolate ice cream has a bright, rich and refreshing taste of the
-                    ingredient it contains.
-                    <div>Thanks to liquid nitrogen shock freezing (-193°C), which freezes all the
-                        ingredients instantly and gives the ice cream an amazingly delicate texture, all the
-                        flavors,
-                        vitamins and nutrients are preserved by 99%.</div>
-                    <br/>
-
-                    <div>Blast freezing with liquid nitrogen (-193°C), which freezes all the ingredients
-                        instantly and gives the ice cream an amazingly delicate texture,
-                        preserving all the flavors, vitamins and nutrients by 99%.
-                    </div>
+                <div className={styles.promoKod}>SKU: {product.sku}</div>
+                <div className={styles.promo_1}>{product.iceName}</div>
+                <div className={styles.promo_2}>{product.header}:</div>
+                <div className={styles.promo_3}>
+                    {product.texst}
                 </div>
                 <div className={styles.button_1}>
-                    <div className={styles.money}>$243.00</div>
+                    <div className={styles.money}>{product.price}</div>
                     <div className={styles.amount}>
-                        <button>-</button>
-                        <span>1</span>
-                        <button>+</button>
+                        <button onClick={decrement}>-</button>
+                        <span>{count}</span>
+                        <button onClick={increment}>+</button>
                     </div>
                 </div>
                 <div className={styles.to_cart}>

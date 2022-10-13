@@ -1,4 +1,4 @@
-
+import { Routes, Route } from "react-router-dom";
 import './App.css';
 import {Header} from "./components/Header";
 import {Footer} from "./components/Footer";
@@ -12,8 +12,10 @@ function App() {
             <Header/>
             <main>
                 <div className='container'>
-                    {/*<MainPage/>*/}
-                    <DetailPage/>
+                    <Routes>
+                        <Route path="/" element={<MainPage/>} />
+                        <Route path="detail/:prodId" element={<DetailPage />} />
+                    </Routes>
                 </div>
             </main>
             <Footer/>

@@ -1,8 +1,9 @@
 import logo from "../../assets/images/logo.png";
+import {Link} from "react-router-dom";
 
 export const Logo = () => {
     return (<div>
-            <img src={logo} alt="Logo"/>
+        <Link to='/'> <img src={logo} alt="Logo"/></Link>
         </div>
     )
 }
