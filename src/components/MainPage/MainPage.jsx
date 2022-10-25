@@ -28,7 +28,6 @@ export const MainPage = () => {
           </div>
         </Link>
       })}
-
     </div>
   </>
 }
