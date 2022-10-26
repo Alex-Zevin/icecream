@@ -12,6 +12,27 @@ const RegisterModal = ({visible, setVisible, onClick}) => {
   const [form, setForm] = useState(initialValues)
   const [error, setError] = useState('')
 
+  const formInput = [
+    {
+      label: 'Name',
+      placeholder: 'Your name',
+      name: 'name',
+      type: 'text'
+    },
+    {
+      label: 'Email',
+      placeholder: 'Your email',
+      name: 'email',
+      type: 'email'
+    },
+    {
+      label: 'Password',
+      placeholder: 'Enter your password',
+      name: 'password',
+      type: 'password'
+    },
+  ]
+
   const handleChange = (event) => {
     setForm((prevState) => ({
       ...prevState,
@@ -35,39 +56,28 @@ const RegisterModal = ({visible, setVisible, onClick}) => {
       onClick()
     }
   }
-
   return (
     <div className={`${styles.modal} ${visible ? styles.modal_active : ''}`} onClick={() => setVisible(false)}>
       <div className={styles.modal__content} onClick={(e) => e.stopPropagation()}>
         <div className={styles.modal_content_all}>
           <h1 className={styles.modal_h}>Create an account</h1>
-          <p className={styles.modal_p}>Name</p>
-          <input
-            className={styles.modal_input}
-            type="text"
-            name="name"
-            value={form.name}
-            onChange={handleChange}
-            placeholder="Your name"
-          />
-          <p className={styles.modal_p}>Email</p>
-          <input
-            className={styles.modal_input}
-            type="text"
-            name="email"
-            value={form.email}
-            onChange={handleChange}
-            placeholder="Your email"
-          />
-          <p className={styles.modal_p}>Password</p>
-          <input
-            className={styles.modal_input}
-            type="text"
-            name="password"
-            value={form.password}
-            onChange={handleChange}
-            placeholder="Enter your password"
-          />
+          {
+            formInput.map(({label, placeholder, name, type}) => (
+              <div key={name + new Date}>
+                <p className={styles.modal_p}>{label}</p>
+                <input
+                  className={styles.modal_input}
+                  type={type}
+                  name={name}
+                  value={form[name]}
+                  onChange={handleChange}
+                  placeholder={placeholder}
+                />
+              </div>
+              )
+            )
+          }
+
           {error && <div className={styles.modal_error}>{error}</div>}
           <button onClick={handleSubmit} className={styles.modal_btn}>Register</button>
           <div className={styles.modal_footer}>
