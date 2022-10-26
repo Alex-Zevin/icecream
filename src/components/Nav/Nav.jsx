@@ -26,7 +26,7 @@ export const Nav = () => {
       <img src={vector} alt="vector"/>
       <span>Cart</span>
     </div>
-    <RegisterModal onClick={handleClick} visible={modalActive} setVisible={setModalActive}/>
-    <LoginModal onClick={handleClick} visible={loginActive} setVisible={setLoginActive}/>
+    {modalActive && <RegisterModal onClick={handleClick} visible={modalActive} setVisible={setModalActive}/>}
+    {loginActive && <LoginModal onClick={handleClick} visible={loginActive} setVisible={setLoginActive}/>}
   </div>
 }

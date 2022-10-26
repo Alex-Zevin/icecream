@@ -2,18 +2,38 @@ import React, { useState } from 'react';
 
 import styles from './RegisterModal.module.css';
 
+const initialValues = {
+  name: '',
+  email: '',
+  password: '',
+}
+
 const RegisterModal = ({visible, setVisible, onClick}) => {
-  const [form, setForm] = useState({
-    name: '',
-    email: '',
-    password: '',
-  })
+  const [form, setForm] = useState(initialValues)
+  const [error, setError] = useState('')
 
   const handleChange = (event) => {
     setForm((prevState) => ({
       ...prevState,
       [event.target.name]: event.target.value
     }))
+  }
+
+  const handleSubmit = () => {
+    const users = localStorage.getItem('users') ? JSON.parse(localStorage.getItem('users')) : []
+    const newUser = {
+      ...form,
+      id: Date.now()
+    }
+
+    const user = users.find(user => user.email === newUser.email)
+    if (user) {
+      setError('User is exist')
+    } else {
+      setError('')
+      localStorage.setItem('users', JSON.stringify([...users, newUser]))
+      onClick()
+    }
   }
 
   return (
@@ -28,7 +48,7 @@ const RegisterModal = ({visible, setVisible, onClick}) => {
             name="name"
             value={form.name}
             onChange={handleChange}
-            placeholder='Your name'
+            placeholder="Your name"
           />
           <p className={styles.modal_p}>Email</p>
           <input
@@ -37,7 +57,7 @@ const RegisterModal = ({visible, setVisible, onClick}) => {
             name="email"
             value={form.email}
             onChange={handleChange}
-            placeholder='Your email'
+            placeholder="Your email"
           />
           <p className={styles.modal_p}>Password</p>
           <input
@@ -46,9 +66,10 @@ const RegisterModal = ({visible, setVisible, onClick}) => {
             name="password"
             value={form.password}
             onChange={handleChange}
-            placeholder='Enter your password'
+            placeholder="Enter your password"
           />
-          <button className={styles.modal_btn}>Register</button>
+          {error && <div className={styles.modal_error}>{error}</div>}
+          <button onClick={handleSubmit} className={styles.modal_btn}>Register</button>
           <div className={styles.modal_footer}>
             <p className={styles.modal_footer_first_p}>Do you already have an account?</p>
             <p
@@ -57,7 +78,7 @@ const RegisterModal = ({visible, setVisible, onClick}) => {
             >
               Sing in
             </p>
-        </div>
+          </div>
         </div>
       </div>
     </div>

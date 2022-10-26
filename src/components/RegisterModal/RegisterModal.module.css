@@ -79,6 +79,7 @@
     color: #FFFFFF;
     border: none;
     margin: 32px 0 40px 0;
+    cursor: pointer;
 }
 
 .modal_footer {
@@ -96,5 +97,10 @@
     color: #9DBCD7;
     text-decoration: underline;
     text-align: center;
+    cursor: pointer;
 }
 
+.modal_error{
+    color: red;
+    margin: 15px 0 15px 0;
+}

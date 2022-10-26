@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 
 import styles from './LoginModal.module.css';
 
-const LoginModal = ({visible, setVisible, onClick }) => {
+const LoginModal = ({visible, setVisible, onClick}) => {
+  const [error, setError] = useState('')
   const [form, setForm] = useState({
     email: '',
     password: '',
@@ -13,6 +14,22 @@ const LoginModal = ({visible, setVisible, onClick }) => {
       ...prevState,
       [event.target.name]: event.target.value
     }))
+  }
+
+  const handleSubmit = () => {
+    const users = localStorage.getItem('users') ? JSON.parse(localStorage.getItem('users')) : []
+
+    const user = users.find(user => user.email === form.email)
+    if (!user) {
+      setError('User is not exist')
+    } else {
+      if (user.password !== form.password) {
+        setError('Wrong password')
+      } else {
+        localStorage.setItem('user', JSON.stringify(user))
+        setVisible(false)
+      }
+    }
   }
 
   return (
@@ -27,7 +44,7 @@ const LoginModal = ({visible, setVisible, onClick }) => {
             name="email"
             value={form.email}
             onChange={handleChange}
-            placeholder='Your email'
+            placeholder="Your email"
           />
           <p className={styles.modal_p}>Password</p>
           <input
@@ -36,9 +53,10 @@ const LoginModal = ({visible, setVisible, onClick }) => {
             name="password"
             value={form.password}
             onChange={handleChange}
-            placeholder='Enter your password'
+            placeholder="Enter your password"
           />
-          <button className={styles.modal_btn}>Sing in</button>
+          {error && <div className={styles.modal_error}>{error}</div>}
+          <button onClick={handleSubmit} className={styles.modal_btn}>Sing in</button>
           <div className={styles.modal_footer}>
             <p className={styles.modal_footer_first_p}>No account? </p>
             <p onClick={onClick} className={styles.modal_footer_last_p}>Create one</p>
@@ -49,6 +67,7 @@ const LoginModal = ({visible, setVisible, onClick }) => {
 
   );
 };
+
 export default LoginModal
 
 
