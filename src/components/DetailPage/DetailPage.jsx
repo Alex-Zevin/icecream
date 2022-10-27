@@ -25,8 +25,8 @@ export const DetailPage = () => {
 
   return <>
     <div className={styles.top_botm}>
-      <Link to="/" className={styles.ss}>Main page </Link>
-      <span>/Product card</span>
+      <Link to="/" className={styles.ss}>Main page /</Link>
+      <span className={styles.ss_1}>Product card</span>
     </div>
     <div className={styles.mid}>
       <div className={styles.left}>

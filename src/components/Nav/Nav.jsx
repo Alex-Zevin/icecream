@@ -24,7 +24,7 @@ export const Nav = () => {
     </div>
     <div className={styles.header_nav_action}>
       <img src={vector} alt="vector"/>
-      <span>Cart</span>
+      <span className={styles.header_nav_basket}>Cart</span>
     </div>
     {modalActive && <RegisterModal onClick={handleClick} visible={modalActive} setVisible={setModalActive}/>}
     {loginActive && <LoginModal onClick={handleClick} visible={loginActive} setVisible={setLoginActive}/>}

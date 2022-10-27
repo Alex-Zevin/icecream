@@ -12,3 +12,7 @@
 .header_nav_action_span {
     cursor: pointer;
 }
+
+.header_nav_basket{
+    cursor: pointer;
+}
