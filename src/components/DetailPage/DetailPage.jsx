@@ -1,5 +1,7 @@
-import { useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import React, { useState } from 'react';
+import { useParams } from 'react-router-dom';
+
+import Breadcrumbs from '../Breadcrumbs/Breadcrumbs';
 
 import { products } from '../../mock';
 import styles from './DetailPage.module.css'
@@ -7,12 +9,12 @@ import styles from './DetailPage.module.css'
 export const DetailPage = () => {
   const {prodId} = useParams();
 
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(1)
 
   const product = products.find(item => item.id === prodId)
 
   const decrement = () => {
-    if (count > 0) {
+    if (count > 1) {
       setCount(count - 1)
     }
   }
@@ -22,12 +24,8 @@ export const DetailPage = () => {
     }
   }
 
-
   return <>
-    <div className={styles.top_botm}>
-      <Link to="/" className={styles.ss}>Main page /</Link>
-      <span className={styles.ss_1}>Product card</span>
-    </div>
+    <Breadcrumbs pageName='product card' />
     <div className={styles.mid}>
       <div className={styles.left}>
         <img className={styles.imagines} src={product.image} alt="cream4"/>
