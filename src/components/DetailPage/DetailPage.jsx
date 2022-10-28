@@ -1,15 +1,17 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 
+import { products } from '../../mock';
+
 import Breadcrumbs from '../Breadcrumbs/Breadcrumbs';
 
-import { products } from '../../mock';
 import styles from './DetailPage.module.css'
 
 export const DetailPage = () => {
   const {prodId} = useParams();
 
-  const [count, setCount] = useState(1)
+  const [count, setCount] = useState(1);
+  const user = JSON.parse(localStorage.getItem('user'))
 
   const product = products.find(item => item.id === prodId)
 
@@ -24,8 +26,36 @@ export const DetailPage = () => {
     }
   }
 
+
+  const handleAddIce = () => {
+    const products = localStorage.getItem('products') ? JSON.parse(localStorage.getItem('products')) : []
+    const findProduct = products.find((item) => item?.id === prodId)
+    if (findProduct) {
+      const updatedProducts = products.map((currentIseCream) => {
+        if (currentIseCream.id === prodId) {
+          const newCount = currentIseCream.count + count
+          if (newCount < 4) {
+            return {
+              ...currentIseCream,
+              count: newCount
+            }
+          } else {
+            console.log('error')
+            return currentIseCream
+          }
+        } else {
+          return currentIseCream
+        }
+      })
+      localStorage.setItem('products', JSON.stringify(updatedProducts))
+    } else {
+      const countProduct = {...product, count}
+      localStorage.setItem('products', JSON.stringify([...products, countProduct]))
+    }
+  }
+
   return <>
-    <Breadcrumbs pageName='product card' />
+    <Breadcrumbs pageName="product card"/>
     <div className={styles.mid}>
       <div className={styles.left}>
         <img className={styles.imagines} src={product.image} alt="cream4"/>
@@ -46,7 +76,11 @@ export const DetailPage = () => {
           </div>
         </div>
         <div className={styles.to_cart}>
-          <button className={styles.to_cart1}><span className={styles.cart}>add to cart</span></button>
+          <button
+            className={styles.to_cart1}
+            onClick={handleAddIce}>
+            <span className={styles.cart}>Add to cart</span>
+          </button>
         </div>
       </div>
     </div>

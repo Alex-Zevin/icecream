@@ -11,7 +11,7 @@ export const products = [
         sku: 'BXD100',
         iceName: 'Snow Tender Ice Cream1',
         header: 'Description1',
-        texst: 'random text 123'
+        texst: 'random text 123',
 
     },
     {
