@@ -54,7 +54,7 @@ const LoginModal = ({visible, setVisible, onClick}) => {
           <h1 className={styles.modal_h}>Log in to your account</h1>
           {
             formInput.map(({label, placeholder, name, type}) => (
-              <div key={name + new Date}>
+              <div key={name}>
                 <p className={styles.modal_p}>{label}</p>
                 <input
                   className={styles.modal_input}

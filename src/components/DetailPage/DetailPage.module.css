@@ -39,7 +39,6 @@
 }
 
 
-
 .promo_2 {
     padding-bottom: 8px;
     font-family: Inter, sans-serif;
@@ -81,11 +80,22 @@
     padding-bottom: 30px;
 }
 
-.to_cart{
+.to_cart {
     padding-top: 48px;
+    display: flex;
+    gap: 10px;
+    align-content: center;
+    align-items: center;
+}
+
+.error {
+    font-size: 16px;
+    line-height: 16px;
+    color: red;
 }
 
 .to_cart1 {
+
     background: linear-gradient(92.65deg, #DFEBFF -21.79%, #88ADCA 126.46%), #AECEF3;
     border-radius: 69px;
     width: 180px;
@@ -95,40 +105,53 @@
     cursor: pointer;
 }
 
-.cart{
+.cart {
     font-weight: 500;
     font-size: 16px;
     cursor: pointer;
 }
 
-.money{
+.right_cart {
+    display: flex;
+    gap: 10px;
+    align-content: center;
+    color: #A3D69B;
+}
+
+.money {
     font-weight: 400;
     font-size: 24px;
     line-height: 16px;
 }
 
-.button_1{
+.button_1 {
     display: flex;
     align-items: center;
     gap: 24px;
 }
 
-.amount button{
+.amount button {
     width: 32px;
     height: 32px;
+    cursor: pointer;
 }
 
-.amount{
+.amount {
     min-width: 108px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+
 }
 
-.ss{
+.ss {
     text-decoration: none;
     color: #212542;
     width: 82px;
     height: 14px;
     opacity: 0.5;
+}
+
+.ss_1 {
+    margin-left: 6px;
 }

@@ -1,0 +1,154 @@
+
+.main_basket {
+    display: flex;
+    gap: 69px;
+}
+
+.basket_left {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.basket_right {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 340px;
+    height: 199px;
+    border-radius: 24px;
+    background: #FFFFFF;
+    border: 1px solid #F4F5FF;
+}
+
+.basket_total_amount {
+    display: flex;
+    justify-content: space-between;
+    gap: 114px;
+    border-bottom: 1px solid #F4F5FF;
+    margin: 14px;
+}
+
+.basket_header {
+    font-size: 36px;
+    line-height: 36px;
+    color: #212542;
+    margin-bottom: 48px
+}
+
+.main_first_basket {
+    display: flex;
+    align-items: center;
+    align-content: center;
+    border-bottom: 1px solid #F4F5FF;
+    padding-bottom: 24px;
+}
+
+.basket_btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 276px;
+    height: 60px;
+    background: linear-gradient(92.65deg, #DFEBFF -21.79%, #88ADCA 126.46%), #AECEF3;
+    border-radius: 69px;
+    cursor: pointer;
+    margin-top: 24px;
+    border: none;
+    color: #fff;
+}
+
+.ice {
+    width: 72px;
+    height: 73px;
+    background-color: #F1F7FF;
+    padding: 14px 20px 9px 28px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.basket_ice_new {
+    width: 100%;
+    height: 100%;
+}
+
+.basket_info {
+    margin: 0 335px 0 24px;
+}
+
+.basket_name {
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 18px;
+    color: #212542;
+    cursor: pointer;
+    width: 207px;
+}
+
+.basket_amount {
+    font-size: 14px;
+    line-height: 14px;
+    color: rgba(33, 37, 66, 0.7);
+}
+
+.basket_total_first {
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 18px;
+    color: #212542;
+}
+
+.basket_total_last {
+    font-size: 16px;
+    line-height: 18px;
+    color: #212542;
+}
+
+.basket_price {
+    font-size: 16px;
+    line-height: 16px;
+    color: rgba(33, 37, 66, 0.7);
+}
+
+.basket_left_third {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+}
+
+.basket_close {
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

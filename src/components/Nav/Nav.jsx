@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 import RegisterModal from '../RegisterModal/RegisterModal';
 import LoginModal from '../LoginModal/LoginModal';
@@ -23,8 +24,10 @@ export const Nav = () => {
       <span className={styles.header_nav_action_span}  onClick={() => setLoginActive(prevState => !prevState)}>Sign in</span>
     </div>
     <div className={styles.header_nav_action}>
+      <Link to='basket'>
       <img src={vector} alt="vector"/>
-      <span>Cart</span>
+      <span className={styles.header_nav_basket}>Cart</span>
+      </Link>
     </div>
     {modalActive && <RegisterModal onClick={handleClick} visible={modalActive} setVisible={setModalActive}/>}
     {loginActive && <LoginModal onClick={handleClick} visible={loginActive} setVisible={setLoginActive}/>}

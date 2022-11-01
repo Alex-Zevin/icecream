@@ -1,8 +1,9 @@
 import { Link } from 'react-router-dom';
 
+import { products } from '../../mock';
+
 import styles from './MainPage.module.css'
 import heart from '../../assets/images/heart.png'
-import { products } from '../../mock';
 
 export const MainPage = () => {
 
@@ -22,7 +23,7 @@ export const MainPage = () => {
             <div className={styles.bottom}>
               <div className={styles.bottom_list}>
                 <div className={styles.li1}>{prod.name}</div>
-                <div className={styles.li2}>{prod.price}</div>
+                <div className={styles.li2}>{`$${prod.price}.00`}</div>
               </div>
             </div>
           </div>

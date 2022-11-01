@@ -1,0 +1,19 @@
+.basket_top {
+    padding: 40px 0 40px 0;
+}
+
+.basket_link {
+    font-size: 14px;
+    line-height: 14px;
+    color: #212542;
+    opacity: 0.5;
+    text-decoration: none;
+}
+
+.basket_basket {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 14px;
+    color: #212542;
+    margin-left: 6px;
+}

@@ -67,4 +67,5 @@
 
 main {
     min-height: calc(100vh - (87px + 157px));
+    background: #FDFDFF;
 }
