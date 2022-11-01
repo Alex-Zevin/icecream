@@ -6,23 +6,34 @@ import { DetailPage } from './components/DetailPage';
 import { Basket } from './components/Basket/';
 
 import './App.css';
+import { createContext, useState } from 'react';
+
+export const MyContext = createContext(null)
 
 function App() {
-  return (
-    <div className="App">
-      <Header/>
-      <main>
-        <div className="container">
-          <Routes>
-            <Route path="/" element={<MainPage/>}/>
-            <Route path="detail/:prodId" element={<DetailPage/>}/>
-            <Route path="basket" element={<Basket/>}/>
-          </Routes>
-        </div>
-      </main>
-      <Footer/>
-    </div>
+  const [basket, setBasket] = useState(JSON.parse(localStorage.getItem('basket')) || null)
 
+  const contextValues = {
+    basket,
+    setBasket
+  }
+
+  return (
+    <MyContext.Provider value={contextValues}>
+      <div className="App">
+        <Header/>
+        <main>
+          <div className="container">
+            <Routes>
+              <Route path="/" element={<MainPage/>}/>
+              <Route path="detail/:prodId" element={<DetailPage/>}/>
+              <Route path="basket" element={<Basket/>}/>
+            </Routes>
+          </div>
+        </main>
+        <Footer/>
+      </div>
+    </MyContext.Provider>
   );
 }
 

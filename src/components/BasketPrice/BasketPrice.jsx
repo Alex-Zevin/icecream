@@ -8,7 +8,7 @@ const BasketPrice = ({price}) => {
       <div className={styles.basket_right}>
         <div className={styles.basket_total_amount}>
           <p className={styles.basket_total_first}>Sub total:</p>
-          <p className={styles.basket_total_last}>{`$${price}.00`}</p>
+          <p className={styles.basket_total_last}>{price ? `$${price}.00` : ''}</p>
         </div>
         <button className={styles.basket_btn}>
           Check out

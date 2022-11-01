@@ -25,8 +25,10 @@ export const Nav = () => {
     </div>
     <div className={styles.header_nav_action}>
       <Link to='basket'>
-      <img src={vector} alt="vector"/>
-      <span className={styles.header_nav_basket}>Cart</span>
+        <img src={vector} alt="vector"/>
+      </Link>
+      <Link to='basket'>
+        <span className={styles.header_nav_basket}>Cart</span>
       </Link>
     </div>
     {modalActive && <RegisterModal onClick={handleClick} visible={modalActive} setVisible={setModalActive}/>}

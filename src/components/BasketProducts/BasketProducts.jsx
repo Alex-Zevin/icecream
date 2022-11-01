@@ -3,7 +3,7 @@ import React from 'react';
 import styles from '../Basket/Basket.module.css';
 import close from '../../assets/images/close.png';
 
-const BasketProducts = ({ products }) => {
+const BasketProducts = ({ products , onClick}) => {
 
   if(!products) {
     return <div>No products</div>
@@ -22,7 +22,7 @@ const BasketProducts = ({ products }) => {
           </div>
           <div className={styles.basket_left_third}>
             <p className={styles.basket_price}>{`$${price * count}.00`}</p>
-            <img className={styles.basket_close} src={close} alt="close"/>
+            <img onClick={() => onClick(id)} className={styles.basket_close} src={close} alt="close"/>
           </div>
         </div>
       ))}
