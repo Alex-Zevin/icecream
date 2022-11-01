@@ -33,5 +33,15 @@ export const products = [
         iceName: 'Snow Tender Ice Cream3',
         header: 'Description3',
         texst: 'random text 125'
+    },
+    {
+        id:'4',
+        name:'Snow Tender ice ice',
+        price:'$246.00',
+        image: cream3,
+        sku: 'BXD120BL',
+        iceName: 'Snow Tender Ice Cream4',
+        header: 'Description4',
+        texst: 'random text 127'
     }
 ]

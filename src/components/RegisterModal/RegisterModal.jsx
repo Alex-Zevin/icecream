@@ -8,7 +8,7 @@ const initialValues = {
   password: '',
 }
 
-const RegisterModal = ({visible, setVisible, onClick}) => {
+  const RegisterModal = ({visible, setVisible, onClick}) => {
   const [form, setForm] = useState(initialValues)
   const [error, setError] = useState('')
 
@@ -63,7 +63,7 @@ const RegisterModal = ({visible, setVisible, onClick}) => {
           <h1 className={styles.modal_h}>Create an account</h1>
           {
             formInput.map(({label, placeholder, name, type}) => (
-              <div key={name + new Date}>
+              <div key={name}>
                 <p className={styles.modal_p}>{label}</p>
                 <input
                   className={styles.modal_input}

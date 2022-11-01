@@ -82,9 +82,20 @@
 
 .to_cart {
     padding-top: 48px;
+    display: flex;
+    gap: 10px;
+    align-content: center;
+    align-items: center;
+}
+
+.error {
+    font-size: 16px;
+    line-height: 16px;
+    color: red;
 }
 
 .to_cart1 {
+
     background: linear-gradient(92.65deg, #DFEBFF -21.79%, #88ADCA 126.46%), #AECEF3;
     border-radius: 69px;
     width: 180px;
@@ -98,6 +109,13 @@
     font-weight: 500;
     font-size: 16px;
     cursor: pointer;
+}
+
+.right_cart {
+    display: flex;
+    gap: 10px;
+    align-content: center;
+    color: #A3D69B;
 }
 
 .money {
