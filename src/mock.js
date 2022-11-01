@@ -6,10 +6,9 @@ export const products = [
     {
         id: '1',
         name: 'Snow Tender Ice Cream',
-        price: '$243.00',
+        price: 243,
         image: cream1,
         sku: 'BXD100',
-        iceName: 'Snow Tender Ice Cream1',
         header: 'Description1',
         texst: 'random text 123',
 
@@ -17,30 +16,27 @@ export const products = [
     {
         id:'2',
         name:'Snow Tender Ice',
-        price:'$244.00',
+        price:244,
         image: cream2,
         sku: 'BXD100BZS',
-        iceName: 'Snow Tender Ice Cream2',
         header: 'Description2',
         texst: 'random text 124'
     },
     {
         id:'3',
         name:'Snow Tender',
-        price:'$245.00',
+        price:245,
         image: cream3,
         sku: 'BXD100Bl',
-        iceName: 'Snow Tender Ice Cream3',
         header: 'Description3',
         texst: 'random text 125'
     },
     {
         id:'4',
         name:'Snow Tender ice ice',
-        price:'$246.00',
+        price:248,
         image: cream3,
         sku: 'BXD120BL',
-        iceName: 'Snow Tender Ice Cream4',
         header: 'Description4',
         texst: 'random text 127'
     }

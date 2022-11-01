@@ -4,8 +4,9 @@
 }
 
 .header_nav_action {
-    align-items: center;
     display: flex;
+    align-items: center;
+    align-content: center;
     gap: 10px;
 }
 
@@ -15,4 +16,7 @@
 
 .header_nav_basket{
     cursor: pointer;
+    text-decoration: none;
+    padding-left: 10px;
+    color: #212542;
 }

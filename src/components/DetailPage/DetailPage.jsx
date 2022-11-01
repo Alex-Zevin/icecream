@@ -92,13 +92,13 @@ export const DetailPage = () => {
       </div>
       <div className="right">
         <div className={styles.promoKod}>SKU: {product.sku}</div>
-        <div className={styles.promo_1}>{product.iceName}</div>
+        <div className={styles.promo_1}>{product.name}</div>
         <div className={styles.promo_2}>{product.header}:</div>
         <div className={styles.promo_3}>
           {product.texst}
         </div>
         <div className={styles.button_1}>
-          <div className={styles.money}>{product.price}</div>
+          <div className={styles.money}>{`$${product.price}.00`}</div>
           <div className={styles.amount}>
             <button onClick={decrement}>-</button>
             <span>{count}</span>

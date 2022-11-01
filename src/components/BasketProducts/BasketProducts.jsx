@@ -3,11 +3,15 @@ import React from 'react';
 import styles from '../Basket/Basket.module.css';
 import close from '../../assets/images/close.png';
 
-const BasketProducts = ({ productList }) => {
+const BasketProducts = ({ products }) => {
+
+  if(!products) {
+    return <div>No products</div>
+  }
 
   return (
     <div className={styles.basket_left}>
-      {productList?.products?.map(({id, name, price, image, iceName, count}) => (
+      {products.map(({id, name, price, image, count}) => (
         <div key={id} className={styles.main_first_basket}>
           <div className={styles.ice}>
             <img className={styles.basket_ice_new} src={image} alt="ice"/>
@@ -17,7 +21,7 @@ const BasketProducts = ({ productList }) => {
             <p className={styles.basket_amount}>{`${count} шт`}</p>
           </div>
           <div className={styles.basket_left_third}>
-            <p className={styles.basket_price}>${(price.replace(/[\D+]./g,"")) * count}.00</p>
+            <p className={styles.basket_price}>{`$${price * count}.00`}</p>
             <img className={styles.basket_close} src={close} alt="close"/>
           </div>
         </div>
@@ -27,3 +31,4 @@ const BasketProducts = ({ productList }) => {
 };
 
 export default BasketProducts;
+
