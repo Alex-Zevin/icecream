@@ -57,9 +57,6 @@ export const DetailPage = () => {
     const updatedProducts = basket.products.map((currentIseCream) => {
       if (currentIseCream.id === prodId) {
         const newCount = currentIseCream.count + count
-        console.log(currentIseCream.count)
-        console.log(count)
-        console.log(newCount)
         if (newCount < 4) {
           return {
             ...currentIseCream,
@@ -71,6 +68,7 @@ export const DetailPage = () => {
           return currentIseCream
         }
       } else {
+        error = ''
         return currentIseCream
       }
     })
@@ -78,7 +76,7 @@ export const DetailPage = () => {
     localStorage.setItem('basket', JSON.stringify(updatedBasket))
     setShowCheckCard(showSuccess)
     setBasket(updatedBasket)
-    error && setError(error)
+    setError(error)
   }
 
   const basketProductNotAvailable = () => {

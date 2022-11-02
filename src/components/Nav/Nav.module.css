@@ -8,6 +8,7 @@
     align-items: center;
     align-content: center;
     gap: 10px;
+    position: relative;
 }
 
 .header_nav_action_span {
@@ -19,4 +20,21 @@
     text-decoration: none;
     padding-left: 10px;
     color: #212542;
+}
+
+.header_nav_counter{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    background: #FE8888;
+    border: 1px solid #FFFFFF;
+    width: 16px;
+    height: 16px;
+    left: 10px;
+    top: 0;
+    border-radius: 50%;
+    font-size: 12px;
+    line-height: 8px;
+    color: #FFFFFF;
 }

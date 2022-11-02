@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import RegisterModal from '../RegisterModal/RegisterModal';
@@ -7,10 +7,13 @@ import LoginModal from '../LoginModal/LoginModal';
 import styles from './Nav.module.css';
 import vector from '../../assets/images/Vector.png';
 import people from '../../assets/images/people.png'
+import { MyContext } from '../../App';
 
 export const Nav = () => {
   const [modalActive, setModalActive] = useState(false)
   const [loginActive, setLoginActive] = useState(false)
+
+  const { basket } = useContext(MyContext)
 
   const handleClick = () =>{
     setModalActive(prevState => !prevState)
@@ -28,6 +31,7 @@ export const Nav = () => {
         <img src={vector} alt="vector"/>
       </Link>
       <Link to='basket'>
+        {basket?.products?.length ? <div className={styles.header_nav_counter}>{basket.products.length}</div> : null}
         <span className={styles.header_nav_basket}>Cart</span>
       </Link>
     </div>

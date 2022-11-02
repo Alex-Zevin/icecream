@@ -4,8 +4,8 @@ import Breadcrumbs from '../Breadcrumbs/Breadcrumbs';
 import BasketPrice from '../BasketPrice/BasketPrice';
 import BasketProducts from '../BasketProducts/BasketProducts';
 
-import styles from './Basket.module.css'
 import { MyContext } from '../../App';
+import styles from './Basket.module.css'
 
 export const Basket = () => {
   const { basket, setBasket } = useContext(MyContext)
