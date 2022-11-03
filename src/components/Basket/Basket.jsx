@@ -9,7 +9,7 @@ import styles from './Basket.module.css'
 
 export const Basket = () => {
   const { basket, setBasket } = useContext(MyContext)
-  const allPrice = basket?.products?.reduce((result, { price, count}) => result + price * count, 0)
+  const allPrice = basket?.products?.reduce((result, { price, count}) => result + price * count, 0) || 0
 
   const basketDelete = (id) => {
     const productsFilter = basket?.products?.filter((product)=> id !== product.id)
@@ -30,7 +30,7 @@ export const Basket = () => {
       <h1 className={styles.basket_header}>Basket</h1>
       <div className={styles.main_basket}>
         <BasketProducts products={basket?.products} onClick={basketDelete} />
-        <BasketPrice price={allPrice}/>
+        <BasketPrice disabled={!basket?.products || !basket?.products?.length} price={allPrice}/>
       </div>
     </div>
   );

@@ -1,13 +1,12 @@
 import React, { useContext, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import ok from '../../assets/images/ok.png'
 
-import { products } from '../../mock';
-
+import { Success } from '../../icons';
 import Breadcrumbs from '../Breadcrumbs/Breadcrumbs';
 
 import styles from './DetailPage.module.css'
 import { MyContext } from '../../App';
+import { products } from '../../mock';
 
 export const DetailPage = () => {
   const {prodId} = useParams();
@@ -119,7 +118,7 @@ export const DetailPage = () => {
             </button>
           </div>
           {showCheckCard && <div className={styles.right_cart}>
-            <img src={ok} alt="ok"/>
+            <Success />
             <span >Added to cart</span>
           </div>}
         </div>

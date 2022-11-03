@@ -12,10 +12,12 @@ export const MyContext = createContext(null)
 
 function App() {
   const [basket, setBasket] = useState(JSON.parse(localStorage.getItem('basket')) || null)
-
+  const [isAuth, setIsAuth] = useState(!!JSON.parse(localStorage.getItem('user')))
   const contextValues = {
     basket,
-    setBasket
+    setBasket,
+    isAuth,
+    setIsAuth
   }
 
   return (

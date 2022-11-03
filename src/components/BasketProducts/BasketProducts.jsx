@@ -4,8 +4,7 @@ import styles from '../Basket/Basket.module.css';
 import close from '../../assets/images/close.png';
 
 const BasketProducts = ({ products , onClick}) => {
-
-  if(!products) {
+  if(!products || !products?.length) {
     return <div>No products</div>
   }
 
