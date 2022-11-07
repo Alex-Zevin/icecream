@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 
+import { useFormik } from 'formik';
+
+import * as Yup from 'yup';
 import styles from './RegisterModal.module.css';
 
 const initialValues = {
@@ -8,9 +11,41 @@ const initialValues = {
   password: '',
 }
 
-  const RegisterModal = ({visible, setVisible, onClick}) => {
-  const [form, setForm] = useState(initialValues)
+const SignupSchema = Yup.object().shape({
+  name: Yup.string()
+    .min(2, 'Too Short!')
+    .max(50, 'Too Long!')
+    .required('Required'),
+  password: Yup.string()
+    .min(2, 'Too Short!')
+    .max(50, 'Too Long!')
+    .required('Required'),
+  email: Yup.string().email('Invalid email').required('Required'),
+});
+
+const RegisterModal = ({visible, setVisible, onClick}) => {
   const [error, setError] = useState('')
+
+  const formik = useFormik({
+    initialValues,
+    validationSchema: SignupSchema,
+    onSubmit: (values) => {
+      const users = localStorage.getItem('users') ? JSON.parse(localStorage.getItem('users')) : []
+      const newUser = {
+        ...values,
+        id: Date.now()
+      }
+
+      const user = users.find(user => user.email === newUser.email)
+      if (user) {
+        setError('User is exist')
+      } else {
+        setError('')
+        localStorage.setItem('users', JSON.stringify([...users, newUser]))
+        onClick()
+      }
+    },
+  });
 
   const formInput = [
     {
@@ -33,29 +68,6 @@ const initialValues = {
     },
   ]
 
-  const handleChange = (event) => {
-    setForm((prevState) => ({
-      ...prevState,
-      [event.target.name]: event.target.value
-    }))
-  }
-
-  const handleSubmit = () => {
-    const users = localStorage.getItem('users') ? JSON.parse(localStorage.getItem('users')) : []
-    const newUser = {
-      ...form,
-      id: Date.now()
-    }
-
-    const user = users.find(user => user.email === newUser.email)
-    if (user) {
-      setError('User is exist')
-    } else {
-      setError('')
-      localStorage.setItem('users', JSON.stringify([...users, newUser]))
-      onClick()
-    }
-  }
   return (
     <div className={`${styles.modal} ${visible ? styles.modal_active : ''}`} onClick={() => setVisible(false)}>
       <div className={styles.modal__content} onClick={(e) => e.stopPropagation()}>
@@ -63,23 +75,27 @@ const initialValues = {
           <h1 className={styles.modal_h}>Create an account</h1>
           {
             formInput.map(({label, placeholder, name, type}) => (
-              <div key={name}>
-                <p className={styles.modal_p}>{label}</p>
-                <input
-                  className={styles.modal_input}
-                  type={type}
-                  name={name}
-                  value={form[name]}
-                  onChange={handleChange}
-                  placeholder={placeholder}
-                />
-              </div>
+                <div key={name}>
+                  <p className={styles.modal_p}>{label}</p>
+                  <input
+                    className={styles.modal_input}
+                    type={type}
+                    name={name}
+                    value={formik.values[name]}
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    placeholder={placeholder}
+                  />
+                  {formik.errors[name] && formik.touched[name] ? (
+                    <div className={styles.modal_error}>{formik.errors[name]}</div>
+                  ) : null}
+                </div>
               )
             )
           }
 
           {error && <div className={styles.modal_error}>{error}</div>}
-          <button onClick={handleSubmit} className={styles.modal_btn}>Register</button>
+          <button onClick={formik.handleSubmit} className={styles.modal_btn}>Register</button>
           <div className={styles.modal_footer}>
             <p className={styles.modal_footer_first_p}>Do you already have an account?</p>
             <p
