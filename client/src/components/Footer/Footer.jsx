@@ -1,6 +1,6 @@
-import { Logo } from '../Logo/Logo';
-import { Menu } from '../Menu/Menu';
-import { Copyright } from '../Copyright/Copyright';
+import { Logo } from '../Logo';
+import { Menu } from '../Menu';
+import { Copyright } from '../Copyright';
 
 import styles from './Footer.module.css'
 
