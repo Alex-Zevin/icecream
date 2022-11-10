@@ -1,25 +1,22 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import ok from '../../assets/images/ok.png'
 
-import { products } from '../../mock';
-
+import { Success } from '../../icons';
 import Breadcrumbs from '../Breadcrumbs/Breadcrumbs';
 
 import styles from './DetailPage.module.css'
+import { MyContext } from '../../App';
+import { products } from '../../mock';
 
 export const DetailPage = () => {
   const {prodId} = useParams();
+  const { basket, setBasket } = useContext(MyContext)
 
   const [count, setCount] = useState(1);
   const user = JSON.parse(localStorage.getItem('user'))
   const [showCheckCard, setShowCheckCard] = useState(false)
   const [error, setError] = useState('')
   const product = products.find(item => item.id === prodId)
-  const basket = localStorage.getItem('basket') ? JSON.parse(localStorage.getItem('basket')) : null
-
-  console.log(showCheckCard)
-  console.log(error)
 
   const decrement = () => {
     if (count > 1) {
@@ -37,6 +34,7 @@ export const DetailPage = () => {
   const basketEmpty = () => {
     const newBasket = {userId: user.id, products: [{...product, count}]}
     localStorage.setItem('basket', JSON.stringify(newBasket))
+    setBasket(newBasket)
     setShowCheckCard(true)
   }
 
@@ -48,6 +46,7 @@ export const DetailPage = () => {
   const basketProductsNotExist = () => {
     const updatedBasket = {...basket, products: [...basket.products, {...product, count}]}
     localStorage.setItem('basket', JSON.stringify(updatedBasket))
+    setBasket(updatedBasket)
     setShowCheckCard(true)
   }
 
@@ -68,13 +67,15 @@ export const DetailPage = () => {
           return currentIseCream
         }
       } else {
+        error = ''
         return currentIseCream
       }
     })
     const updatedBasket = {...basket, products: updatedProducts}
     localStorage.setItem('basket', JSON.stringify(updatedBasket))
     setShowCheckCard(showSuccess)
-    error && setError(error)
+    setBasket(updatedBasket)
+    setError(error)
   }
 
   const basketProductNotAvailable = () => {
@@ -117,7 +118,7 @@ export const DetailPage = () => {
             </button>
           </div>
           {showCheckCard && <div className={styles.right_cart}>
-            <img src={ok} alt="ok"/>
+            <Success />
             <span >Added to cart</span>
           </div>}
         </div>
