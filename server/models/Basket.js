@@ -28,6 +28,10 @@ const basketSchema = new Schema({
     text: {
       type: String,
       required: true
+    },
+    count: {
+      type: Number,
+      required: true
     }
   }],
   userId: {

@@ -10,10 +10,10 @@ const BasketProducts = ({ products , onClick}) => {
 
   return (
     <div className={styles.basket_left}>
-      {products.map(({id, name, price, image, count}) => (
-        <div key={id} className={styles.main_first_basket}>
+      {products.map(({_id, name, price, imageSrc, count}) => (
+        <div key={_id} className={styles.main_first_basket}>
           <div className={styles.ice}>
-            <img className={styles.basket_ice_new} src={image} alt="ice"/>
+            <img className={styles.basket_ice_new} src={`http://localhost:5000/${imageSrc}`} alt="ice"/>
           </div>
           <div className={styles.basket_info}>
             <p className={styles.basket_name}>{name}</p>
@@ -21,7 +21,7 @@ const BasketProducts = ({ products , onClick}) => {
           </div>
           <div className={styles.basket_left_third}>
             <p className={styles.basket_price}>{`$${price * count}.00`}</p>
-            <img onClick={() => onClick(id)} className={styles.basket_close} src={close} alt="close"/>
+            <img onClick={() => onClick(_id)} className={styles.basket_close} src={close} alt="close"/>
           </div>
         </div>
       ))}

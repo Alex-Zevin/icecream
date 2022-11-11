@@ -1,10 +1,10 @@
 import React, { useContext, useState } from 'react';
-
-import { MyContext } from '../../../App';
+import * as Yup from 'yup';
+import axios from 'axios';
 import { useFormik } from 'formik';
 
+import { MyContext } from '../../../App';
 import styles from '../../LoginModal/LoginModal.module.css';
-import * as Yup from 'yup';
 
 const SignupSchema = Yup.object().shape({
   password: Yup.string()
@@ -14,8 +14,8 @@ const SignupSchema = Yup.object().shape({
   email: Yup.string().email('Invalid email').required('Required'),
 });
 
-const LoginContent = ({ onClick, setVisible }) => {
-  const [error, setError] = useState('')
+const LoginContent = ({onClick, setVisible}) => {
+  const [error,] = useState('')
 
   const formik = useFormik({
     initialValues: {
@@ -24,20 +24,14 @@ const LoginContent = ({ onClick, setVisible }) => {
     },
     validationSchema: SignupSchema,
     onSubmit: (values) => {
-      const users = localStorage.getItem('users') ? JSON.parse(localStorage.getItem('users')) : []
-
-      const user = users.find(user => user.email === values.email)
-      if (!user) {
-        setError('User is not exist')
-      } else {
-        if (user.password !== values.password) {
-          setError('Wrong password')
-        } else {
-          localStorage.setItem('user', JSON.stringify(user))
+      axios.post('http://localhost:5000/api/auth/login', values)
+        .then((response) => {
+          localStorage.setItem('token', response.data.token)
+          localStorage.setItem('user', response.data.userId)
           setVisible(false)
           setIsAuth(true)
-        }
-      }
+        })
+
     }
   })
 
