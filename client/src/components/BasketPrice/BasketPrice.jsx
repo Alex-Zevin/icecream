@@ -1,4 +1,5 @@
 import React, { useContext, useState } from 'react';
+import axios from 'axios';
 
 import LoginModal from '../LoginModal/LoginModal';
 import { Success } from '../../icons';
@@ -8,12 +9,19 @@ import { MyContext } from '../../App';
 
 const BasketPrice = ({price, disabled = false}) => {
   const [open, setOpen] = useState(false)
-  const {setBasket} = useContext(MyContext)
+  const { setBasket, token, userId} = useContext(MyContext)
 
   const deleteBasket = () => {
-    localStorage.removeItem('basket')
-    setBasket('')
-    setOpen(true)
+    axios.delete(`http://localhost:5000/api/basket/${userId}`, {
+        headers: {
+          Authorization: token
+        }
+      }
+    )
+      .then(() => {
+        setBasket('')
+        setOpen(true)
+      })
   }
 
   return (

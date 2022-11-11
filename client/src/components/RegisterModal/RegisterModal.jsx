@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-
+import axios from 'axios';
 import { useFormik } from 'formik';
-
 import * as Yup from 'yup';
+
 import styles from './RegisterModal.module.css';
 
 const initialValues = {
@@ -24,26 +24,14 @@ const SignupSchema = Yup.object().shape({
 });
 
 const RegisterModal = ({visible, setVisible, onClick}) => {
-  const [error, setError] = useState('')
+  const [error,] = useState('')
 
   const formik = useFormik({
     initialValues,
     validationSchema: SignupSchema,
     onSubmit: (values) => {
-      const users = localStorage.getItem('users') ? JSON.parse(localStorage.getItem('users')) : []
-      const newUser = {
-        ...values,
-        id: Date.now()
-      }
-
-      const user = users.find(user => user.email === newUser.email)
-      if (user) {
-        setError('User is exist')
-      } else {
-        setError('')
-        localStorage.setItem('users', JSON.stringify([...users, newUser]))
-        onClick()
-      }
+      axios.post('http://localhost:5000/api/auth/register', values)
+        .then(() => onClick())
     },
   });
 

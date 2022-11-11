@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import axios from 'axios';
 
 import Breadcrumbs from '../Breadcrumbs/Breadcrumbs';
 import BasketPrice from '../BasketPrice/BasketPrice';
@@ -8,19 +9,26 @@ import { MyContext } from '../../App';
 import styles from './Basket.module.css'
 
 export const Basket = () => {
-  const { basket, setBasket } = useContext(MyContext)
+  const { basket, setBasket, userId, token } = useContext(MyContext)
   const allPrice = basket?.products?.reduce((result, { price, count}) => result + price * count, 0) || 0
 
   const basketDelete = (id) => {
-    const productsFilter = basket?.products?.filter((product)=> id !== product.id)
+    const productsFilter = basket?.products?.filter((product)=> id !== product._id)
     setBasket((prevState) => {
       const filteredProducts = {
         ...prevState,
         products: productsFilter
       }
-      localStorage.setItem('basket', JSON.stringify(filteredProducts))
-      setBasket(filteredProducts)
-      return filteredProducts
+      axios.patch(`http://localhost:5000/api/basket/${userId}`, filteredProducts, {
+          headers: {
+            Authorization: token
+          }
+        }
+      )
+        .then(() => {
+          setBasket(filteredProducts)
+          return filteredProducts
+        })
     })
   }
 
