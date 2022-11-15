@@ -95,7 +95,6 @@
 }
 
 .to_cart1 {
-
     background: linear-gradient(92.65deg, #DFEBFF -21.79%, #88ADCA 126.46%), #AECEF3;
     border-radius: 69px;
     width: 180px;
@@ -141,7 +140,6 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-
 }
 
 .ss {
@@ -154,4 +152,36 @@
 
 .ss_1 {
     margin-left: 6px;
+}
+
+@media screen and (max-width: 1024px) {
+    .imagines {
+        display: block;
+        margin: 0 auto;
+        padding-top: 40px;
+        width: 300px;
+        height: 300px;
+    }
+
+    .promo_1, .promo_2, .promo_3 {
+        max-width: 300px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .mid {
+        display: flex;
+        flex-direction: column;
+        max-width: 100%;
+        width: 100%;
+    }
+
+    .left {
+        max-width: 100%;
+        width: 100%;
+    }
+
+    .to_cart {
+        padding-bottom: 20px;
+    }
 }

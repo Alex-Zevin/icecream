@@ -1,28 +1,33 @@
 .header_nav {
     display: flex;
-    gap: 50px;
+    gap: 5px;
 }
 
 .header_nav_action {
     display: flex;
-    align-items: center;
-    align-content: center;
-    gap: 10px;
+    justify-content: center;
     position: relative;
+}
+
+.header_nav1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
 }
 
 .header_nav_action_span {
     cursor: pointer;
 }
 
-.header_nav_basket{
+.header_nav_basket {
     cursor: pointer;
     text-decoration: none;
     padding-left: 10px;
     color: #212542;
 }
 
-.header_nav_counter{
+.header_nav_counter {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -32,9 +37,52 @@
     width: 16px;
     height: 16px;
     left: 10px;
-    top: 0;
+    top: 1px;
     border-radius: 50%;
     font-size: 12px;
     line-height: 8px;
     color: #FFFFFF;
+}
+
+.header_new {
+    display: flex;
+    align-items: flex-start;
+    gap: 53px;
+}
+
+.mobile_btn {
+    display: none;
+}
+
+@media screen and (max-width: 768px) {
+    .mobile_btn {
+        display: block;
+        position: absolute;
+        right: 20px;
+        top: 25px;
+        cursor: pointer;
+        z-index: 10;
+    }
+
+    .header_new {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        position: fixed;
+        left: -100%;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        width: 100%;
+        height: 100vh;
+        background-color: #F8F8F8;
+        z-index: 10;
+        transition: left 1s;
+        font-size: 25px;
+    }
+
+    .active {
+        left: 0;
+    }
 }

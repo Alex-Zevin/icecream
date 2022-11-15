@@ -22,7 +22,7 @@ export const MainPage = () => {
     </div>
     <div className={`${styles.main_img} container`}>
       {products.map((prod) => {
-        return <Link key={prod._id} to={`detail/${prod._id}`}>
+        return <Link className={styles.link} key={prod._id} to={`detail/${prod._id}`}>
           <div className={styles.block}>
             <div className={styles.top}>
               <img src={`http://localhost:5000/${prod.imageSrc}`} alt="cream1"/>

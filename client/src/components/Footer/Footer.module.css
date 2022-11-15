@@ -15,3 +15,14 @@ a:hover, a:focus, a:active {
     color: inherit;
 }
 
+@media screen and (max-width: 1024px) {
+    .footer_all {
+        max-width: 750px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .footer_all {
+        display: none;
+    }
+}
