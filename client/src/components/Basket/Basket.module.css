@@ -43,6 +43,7 @@
     align-content: center;
     border-bottom: 1px solid #F4F5FF;
     padding-bottom: 24px;
+    justify-content: space-between;
 }
 
 .basket_btn {
@@ -73,8 +74,9 @@
     height: 100%;
 }
 
-.basket_info {
-    margin: 0 335px 0 24px;
+.basket_1 {
+    display: flex;
+    gap: 335px;
 }
 
 .basket_name {
@@ -137,7 +139,50 @@
     font-weight: bold;
 }
 
+@media screen and (max-width: 1280px) {
+    .main_basket {
+        max-width: 100%;
+        width: 100%;
+    }
 
+    .basket_1 {
+        display: flex;
+        gap: 200px;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .main_basket {
+        display: flex;
+        flex-direction: column;
+        align-content: center;
+    }
+
+    .basket_right {
+        margin: auto 0;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .main_first_basket {
+        display: flex;
+        align-content: center;
+        gap: 10px;
+    }
+
+    .basket_1 {
+        justify-content: center;
+        align-items: center;
+        gap: 12px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .basket_ice_new {
+        width: 50px;
+        height: 57px;
+    }
+}
 
 
 

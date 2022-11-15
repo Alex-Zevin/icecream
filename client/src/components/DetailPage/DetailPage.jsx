@@ -86,6 +86,7 @@ export const DetailPage = () => {
         } else {
           showSuccess = false
           error = 'Превышено количество продуктов'
+          setShowCheckCard(false)
           return currentIseCream
         }
       } else {
@@ -94,7 +95,7 @@ export const DetailPage = () => {
       }
     })
     const updatedBasket = {...basket, products: updatedProducts}
-    if(!error) {
+    if (!error) {
       axios.patch(`http://localhost:5000/api/basket/${userId}`, updatedBasket, {
           headers: {
             Authorization: token
@@ -117,7 +118,7 @@ export const DetailPage = () => {
   }
 
   const handleAddIce = () => {
-    if(!isAuth) {
+    if (!isAuth) {
       setLoginActive(true)
     } else {
       basket ? basketExist() : basketEmpty()
@@ -135,7 +136,7 @@ export const DetailPage = () => {
         <div className={styles.promo_1}>{products.name}</div>
         <div className={styles.promo_2}>{products.header}:</div>
         <div className={styles.promo_3}>
-          {products.texst}
+          {products.text}
         </div>
         <div className={styles.button_1}>
           <div className={styles.money}>{`$${products.price}.00`}</div>

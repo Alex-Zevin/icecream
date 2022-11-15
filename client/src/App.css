@@ -9,20 +9,29 @@ body {
     margin: 0 auto;
 }
 
-/** Header */
+@media screen and (max-width: 1280px) {
+    .container {
+        max-width: 1000px;
+    }
+}
 
+@media screen and (max-width: 1024px) {
+    .container {
+        max-width: 750px;
+    }
+}
 
-/** Footer */
+@media screen and (max-width: 768px) {
+    .container {
+        max-width: 450px;
+    }
+}
 
-
-
-/** main */
-
-
-/*новая страница*/
-
-
-
+@media screen and (max-width: 480px) {
+    .container {
+        max-width: 380px;
+    }
+}
 
 
 

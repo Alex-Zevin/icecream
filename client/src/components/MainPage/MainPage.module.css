@@ -69,3 +69,44 @@ main {
     min-height: calc(100vh - (87px + 157px));
     background: #FDFDFF;
 }
+
+@media screen and (max-width: 1024px) {
+    .block {
+        display: flex;
+        max-width: 100%;
+        width: 100%;
+    }
+
+    .main_img {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+
+    .top {
+        width: 100%;
+    }
+
+    .link {
+        width: 100%;
+    }
+
+    .bottom {
+        width: 100%;
+        max-width: 100%;
+        display: flex;
+        align-content: center;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    main {
+        min-height: calc(100vh - (87px + 45px));
+        background: #FDFDFF;
+    }
+
+    .bottom {
+        justify-content: center;
+    }
+}
