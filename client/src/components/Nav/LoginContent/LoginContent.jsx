@@ -15,7 +15,7 @@ const SignupSchema = Yup.object().shape({
 });
 
 const LoginContent = ({onClick, setVisible}) => {
-  const [error,] = useState('')
+  const [error,setError] = useState('')
 
   const formik = useFormik({
     initialValues: {
@@ -30,8 +30,10 @@ const LoginContent = ({onClick, setVisible}) => {
           localStorage.setItem('user', response.data.userId)
           setVisible(false)
           setIsAuth(true)
+          setError('')
+          onClick()
         })
-
+        .catch((error) => setError(error.response.data.message))
     }
   })
 
