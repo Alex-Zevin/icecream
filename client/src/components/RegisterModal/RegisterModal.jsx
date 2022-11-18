@@ -34,6 +34,7 @@ const RegisterModal = ({visible, setVisible, onClick}) => {
         .then(() => {
           setError('')
           onClick()
+
         })
         .catch((error) => setError(error.response.data.message))
     },

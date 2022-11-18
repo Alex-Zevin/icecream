@@ -31,7 +31,7 @@ const LoginContent = ({onClick, setVisible}) => {
           setVisible(false)
           setIsAuth(true)
           setError('')
-          onClick()
+
         })
         .catch((error) => setError(error.response.data.message))
     }
