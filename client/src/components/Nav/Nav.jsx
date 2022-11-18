@@ -52,7 +52,7 @@ export const Nav = () => {
           <Link to={isAuth ? 'basket' : '/'} onClick={() => setNav(false)}>
             <img src={vector} alt="vector"/>
           </Link>
-          <Link to={isAuth ? 'basket' : '/' } onClick={() => setNav(false)}>
+          <Link className={styles.header_link} to={isAuth ? 'basket' : '/' } onClick={() => setNav(false)}>
             {basket?.products?.length ?
               <div className={styles.header_nav_counter}>{basket.products.length}</div> : null}
             <span className={styles.header_nav_basket}>Cart</span>

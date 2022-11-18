@@ -20,7 +20,14 @@
     cursor: pointer;
 }
 
+.header_link{
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+
+}
 .header_nav_basket {
+    align-content: center;
     cursor: pointer;
     text-decoration: none;
     padding-left: 10px;

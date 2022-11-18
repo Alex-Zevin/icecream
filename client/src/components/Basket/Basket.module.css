@@ -77,6 +77,7 @@
 .basket_1 {
     display: flex;
     gap: 335px;
+    margin-left: 16px;
 }
 
 .basket_name {

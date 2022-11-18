@@ -24,14 +24,18 @@ const SignupSchema = Yup.object().shape({
 });
 
 const RegisterModal = ({visible, setVisible, onClick}) => {
-  const [error,] = useState('')
+  const [error, setError] = useState('')
 
   const formik = useFormik({
     initialValues,
     validationSchema: SignupSchema,
     onSubmit: (values) => {
       axios.post('http://localhost:5000/api/auth/register', values)
-        .then(() => onClick())
+        .then(() => {
+          setError('')
+          onClick()
+        })
+        .catch((error) => setError(error.response.data.message))
     },
   });
 
