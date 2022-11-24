@@ -1,36 +1,48 @@
-import { useContext, useState } from 'react';
+import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+
 import { Link } from 'react-router-dom';
 import { AiOutlineMenu, AiOutlineClose } from 'react-icons/ai';
 import RegisterModal from '../RegisterModal/RegisterModal';
 import LoginModal from '../LoginModal/LoginModal';
 import LoginContent from './LoginContent/LoginContent';
 
-import { MyContext } from '../../App';
+import { deleteBasket, setIsAuth, setLoginModalActive, setToken, setUser } from '../../redux/actions';
+
 import styles from './Nav.module.css';
 import vector from '../../assets/images/Vector.png';
 import people from '../../assets/images/people.png'
 
 export const Nav = () => {
+  const dispatch = useDispatch()
+
   const [modalActive, setModalActive] = useState(false)
   const [nav, setNav] = useState(false)
 
-  const {basket, setIsAuth, isAuth, loginActive, setLoginActive, setBasket} = useContext(MyContext)
+  const isAuth = useSelector(state => state.isAuth)
+  const basket = useSelector(state => state.basket)
+  const loginActive = useSelector(state => state.loginActive)
+
   const handleClick = () => {
     setModalActive(prevState => !prevState)
-    setLoginActive(prevState => !prevState)
+    dispatch(setLoginModalActive(!loginActive))
   }
 
   const logIn = (logIn) => {
-    logIn ? setLoginActive(prevState => !prevState) : setModalActive(prevState => !prevState)
+    logIn ? dispatch(setLoginModalActive(!loginActive)) : setModalActive(prevState => !prevState)
     setNav(false)
   }
 
   const logout = () => {
     localStorage.removeItem('user')
     localStorage.removeItem('token')
-    setIsAuth(false)
-    setBasket(null)
+    dispatch(setToken(null))
+    dispatch(setUser(null))
+    dispatch(setIsAuth(false))
+    dispatch(deleteBasket())
   }
+
+  const handleCloseModal = (state) => dispatch(setLoginModalActive(state))
 
   return <>
     <div className={styles.header_nav}>
@@ -52,7 +64,7 @@ export const Nav = () => {
           <Link to={isAuth ? 'basket' : '/'} onClick={() => setNav(false)}>
             <img src={vector} alt="vector"/>
           </Link>
-          <Link className={styles.header_link} to={isAuth ? 'basket' : '/' } onClick={() => setNav(false)}>
+          <Link className={styles.header_link} to={isAuth ? 'basket' : '/'} onClick={() => setNav(false)}>
             {basket?.products?.length ?
               <div className={styles.header_nav_counter}>{basket.products.length}</div> : null}
             <span className={styles.header_nav_basket}>Cart</span>
@@ -64,16 +76,10 @@ export const Nav = () => {
       </div>
       {modalActive && <RegisterModal onClick={handleClick} visible={modalActive} setVisible={setModalActive}/>}
       {loginActive &&
-        <LoginModal visible={loginActive} setVisible={setLoginActive}>
-          <LoginContent onClick={handleClick} setVisible={setLoginActive}/>
+        <LoginModal visible={loginActive} setVisible={handleCloseModal}>
+          <LoginContent onClick={handleClick} setVisible={handleCloseModal}/>
         </LoginModal>
       }
     </div>
   </>
 }
-
-
-
-
-
-

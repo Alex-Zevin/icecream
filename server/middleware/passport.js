@@ -21,7 +21,6 @@ module.exports = passport => {
           done(null, false)
         }
       } catch (e) {
-        console.log(e)
       }
     })
   )

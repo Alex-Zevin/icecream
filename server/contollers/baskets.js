@@ -9,6 +9,7 @@ module.exports.getById = async function (req, res) {
     errorHandler(res, e)
   }
 }
+
 module.exports.remove = async function (req, res) {
   try {
     await Basket.remove({userId: req.params.id})
@@ -19,6 +20,7 @@ module.exports.remove = async function (req, res) {
     errorHandler(res, e)
   }
 }
+
 module.exports.create = async function (req, res) {
   const basket = new Basket({
     products: req.body.products,
@@ -31,6 +33,7 @@ module.exports.create = async function (req, res) {
     errorHandler(res, e)
   }
 }
+
 module.exports.update = async function (req, res) {
   try {
     const basket = await Basket.findOneAndUpdate(
