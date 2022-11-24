@@ -1,10 +1,9 @@
-import React, { useContext } from 'react';
+import React from 'react';
 
 import { Navigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
-import { MyContext } from '../../App';
-
-export const AuthWrapper = ({ children }) => {
-  const { isAuth } = useContext(MyContext)
-  return isAuth ? children : <Navigate to='/' />
+export const AuthWrapper = ({children}) => {
+  const isAuth = useSelector(state => state.isAuth)
+  return isAuth ? children : <Navigate to="/"/>
 };

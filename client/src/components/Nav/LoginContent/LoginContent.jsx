@@ -1,10 +1,11 @@
-import React, { useContext, useState } from 'react';
+import React, {  useState } from 'react';
 import * as Yup from 'yup';
 import axios from 'axios';
 import { useFormik } from 'formik';
+import { useDispatch} from 'react-redux';
 
-import { MyContext } from '../../../App';
 import styles from '../../LoginModal/LoginModal.module.css';
+import { setIsAuth, setToken, setUser } from '../../../redux/actions';
 
 const SignupSchema = Yup.object().shape({
   password: Yup.string()
@@ -15,6 +16,8 @@ const SignupSchema = Yup.object().shape({
 });
 
 const LoginContent = ({onClick, setVisible}) => {
+  const dispatch = useDispatch()
+
   const [error,setError] = useState('')
 
   const formik = useFormik({
@@ -28,16 +31,15 @@ const LoginContent = ({onClick, setVisible}) => {
         .then((response) => {
           localStorage.setItem('token', response.data.token)
           localStorage.setItem('user', response.data.userId)
+          dispatch(setToken(response.data.token))
+          dispatch(setUser(response.data.userId))
+          dispatch(setIsAuth(true))
           setVisible(false)
-          setIsAuth(true)
           setError('')
-
         })
         .catch((error) => setError(error.response.data.message))
     }
   })
-
-  const {setIsAuth} = useContext(MyContext)
 
   const formInput = [
     {

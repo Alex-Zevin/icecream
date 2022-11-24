@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 
@@ -6,15 +6,24 @@ import { Success } from '../../icons';
 import Breadcrumbs from '../Breadcrumbs/Breadcrumbs';
 
 import styles from './DetailPage.module.css'
-import { MyContext } from '../../App';
+
+import { useDispatch, useSelector } from 'react-redux';
+import { createBasket, setLoginModalActive, updateBasket } from '../../redux/actions';
 
 export const DetailPage = () => {
+  const dispatch = useDispatch()
   const {prodId} = useParams();
-  const {basket, setBasket, userId, token, isAuth, setLoginActive} = useContext(MyContext)
+
   const [count, setCount] = useState(1);
   const [showCheckCard, setShowCheckCard] = useState(false)
   const [error, setError] = useState('')
-  const [products, setProducts] = useState([])
+  const [product, setProduct] = useState(null)
+
+  const basket = useSelector(state => state.basket)
+  const userId = useSelector(state => state.userId)
+  const token = useSelector(state => state.token)
+  const isAuth = useSelector(state => state.isAuth)
+  const loginActive = useSelector(state => state.loginActive)
 
   useEffect(() => {
     axios.get(`http://localhost:5000/api/product/${prodId}`, {
@@ -22,7 +31,7 @@ export const DetailPage = () => {
         Authorization: token
       }
     })
-      .then((response) => setProducts(response.data))
+      .then((response) => setProduct(response.data))
   }, [])
 
   const decrement = () => {
@@ -36,18 +45,18 @@ export const DetailPage = () => {
     }
   }
 
-  const basketExist = () => basket.products.length < 3 ? basketProductsAvailable() : basketProductNotAvailable()
-
+  const basketExist = () => basket.products.length < 4 ? basketProductsAvailable() : basketProductNotAvailable()
   const basketEmpty = () => {
-    const newBasket = {userId, products: [{...products, count}]}
+
+    const newBasket = {userId, products: [{...product, count}]}
     axios.post('http://localhost:5000/api/basket/', newBasket, {
         headers: {
           Authorization: token
         }
       }
     )
-      .then(() => {
-        setBasket(newBasket)
+      .then((response) => {
+        dispatch(createBasket(response.data))
         setShowCheckCard(true)
       })
   }
@@ -58,18 +67,21 @@ export const DetailPage = () => {
   }
 
   const basketProductsNotExist = () => {
-    const updatedBasket = {...basket, products: [...basket.products, {...products, count}]}
-
-    axios.patch(`http://localhost:5000/api/basket/${userId}`, updatedBasket, {
-        headers: {
-          Authorization: token
+    if (basket?.products?.length < 3) {
+      const updatedBasket = {products: [...basket.products, {...product, count}]}
+      axios.patch(`http://localhost:5000/api/basket/${userId}`, updatedBasket, {
+          headers: {
+            Authorization: token
+          }
         }
-      }
-    )
-      .then(() => {
-        setBasket(updatedBasket)
-        setShowCheckCard(true)
-      })
+      )
+        .then((response) => {
+          dispatch(updateBasket(response.data));
+          setShowCheckCard(true)
+        })
+    } else {
+      basketProductNotAvailable()
+    }
   }
 
   const basketProductsExist = () => {
@@ -102,9 +114,9 @@ export const DetailPage = () => {
           }
         }
       )
-        .then(() => {
+        .then((response) => {
+          dispatch(updateBasket(response.data))
           setShowCheckCard(showSuccess)
-          setBasket(updatedBasket)
           setError(error)
         })
     } else {
@@ -119,27 +131,31 @@ export const DetailPage = () => {
 
   const handleAddIce = () => {
     if (!isAuth) {
-      setLoginActive(true)
+      dispatch(setLoginModalActive(!loginActive))
     } else {
       basket ? basketExist() : basketEmpty()
     }
+  }
+
+  if(!product) {
+    return null
   }
 
   return <>
     <Breadcrumbs pageName="product card"/>
     <div className={styles.mid}>
       <div className={styles.left}>
-        <img className={styles.imagines} src={`http://localhost:5000/${products.imageSrc}`} alt="cream4"/>
+        <img className={styles.imagines} src={`http://localhost:5000/${product.imageSrc}`} alt="cream4"/>
       </div>
       <div className="right">
-        <div className={styles.promoKod}>SKU: {products.sku}</div>
-        <div className={styles.promo_1}>{products.name}</div>
-        <div className={styles.promo_2}>{products.header}:</div>
+        <div className={styles.promoKod}>SKU: {product.sku}</div>
+        <div className={styles.promo_1}>{product.name}</div>
+        <div className={styles.promo_2}>{product.header}:</div>
         <div className={styles.promo_3}>
-          {products.text}
+          {product.text}
         </div>
         <div className={styles.button_1}>
-          <div className={styles.money}>{`$${products.price}.00`}</div>
+          <div className={styles.money}>{`$${product.price}.00`}</div>
           <div className={styles.amount}>
             <button onClick={decrement}>-</button>
             <span>{count}</span>

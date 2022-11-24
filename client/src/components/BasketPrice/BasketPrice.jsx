@@ -1,15 +1,20 @@
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
+import { useDispatch, useSelector } from 'react-redux';
 
 import LoginModal from '../LoginModal/LoginModal';
 import { Success } from '../../icons';
 
 import styles from '../Basket/Basket.module.css';
-import { MyContext } from '../../App';
+import {  updateBasket } from '../../redux/actions';
 
 const BasketPrice = ({price, disabled = false}) => {
+  const dispatch = useDispatch()
+
   const [open, setOpen] = useState(false)
-  const { setBasket, token, userId} = useContext(MyContext)
+
+  const userId = useSelector(state => state.userId)
+  const token = useSelector(state => state.token)
 
   const deleteBasket = () => {
     axios.delete(`http://localhost:5000/api/basket/${userId}`, {
@@ -19,7 +24,7 @@ const BasketPrice = ({price, disabled = false}) => {
       }
     )
       .then(() => {
-        setBasket('')
+        dispatch(updateBasket(''))
         setOpen(true)
       })
   }
